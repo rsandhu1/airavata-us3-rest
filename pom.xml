@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>scigap.restservices</groupId>
+	<artifactId>us3-scigap-rest</artifactId>
+	<version>1.0</version>
+	<packaging>war</packaging>
+	<name>ogce-rest</name>
+	<description />
+	<properties>
+		<cargo.version>1.1.0</cargo.version>
+		<!-- if you want a remote debugging on a different a address override on 
+			command line with -Dcargo.debug.addres=xxxx -->
+		<cargo.debug.address>8000</cargo.debug.address>
+		<!-- if you want to start remote debugging session suspended override on 
+			command line with -Dcargo.debug.suspend=y -->
+		<cargo.debug.suspend>n</cargo.debug.suspend>
+		<javaagent />
+		<org.slf4j.version>1.6.1</org.slf4j.version>
+		<log4j.version>1.2.16</log4j.version>
+		<jersey.version>1.13</jersey.version>
+		<derby.version>10.9.1.0</derby.version>
+		<airavata.version>0.8-unicore-bes</airavata.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+	</properties>
+
+	<repositories>
+		<!--These are needed for Jersey -->
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2/</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
+			<name>ogce.m2.all</name>
+			<id>ogce.m2.all</id>
+			<url>http://community.ucs.indiana.edu:9090/archiva/repository/ogce.m2.all</url>
+			<snapshots>
+				<!--updatePolicy>daily</updatePolicy -->
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>m2-snapshot-repository</id>
+			<url>http://people.apache.org/repo/m2-snapshot-repository</url>
+			<releases>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>unicore.eu</id>
+			<name>UNICORE repository</name>
+			<url>http://unicore-dev.zam.kfa-juelich.de/maven</url>
+		</repository>
+	</repositories>
+	<dependencies>
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${org.slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${org.slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${org.slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- These are the Jersey dependencies -->
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-servlet</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.grizzly</groupId>
+			<artifactId>grizzly-servlet-webserver</artifactId>
+			<version>1.9.18-i</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey.contribs</groupId>
+			<artifactId>jersey-multipart</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey.jersey-test-framework</groupId>
+			<artifactId>jersey-test-framework-grizzly</artifactId>
+			<version>${jersey.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Cog jars -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.12</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derbyclient</artifactId>
+			<version>${derby.version}</version>
+		</dependency>
+
+		<!-- Swagger Documentation -->
+		<dependency>
+			<groupId>com.wordnik</groupId>
+			<artifactId>swagger-jersey-jaxrs_2.10</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+	<!-- Cog jars -->
+        <dependency>
+            <groupId>cog-jglobus</groupId>
+            <artifactId>cog-jglobus</artifactId>
+            <version>1.8.0_1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15</artifactId>
+            <version>1.45</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcmail-jdk15</artifactId>
+            <version>1.45</version>
+        </dependency>
+		<dependency>
+            <groupId>lead-security</groupId>
+            <artifactId>puretls</artifactId>
+            <version>0.9b4-1</version>
+        </dependency>
+        <dependency>
+            <groupId>lead-security</groupId>
+            <artifactId>cryptix32</artifactId>
+            <version>versionless</version>
+        </dependency>
+        <dependency>
+            <groupId>lead-security</groupId>
+            <artifactId>cryptix-asn1</artifactId>
+            <version>versionless</version>
+        </dependency>
+        
+		<dependency>
+			<groupId>xpp3</groupId>
+			<artifactId>xpp3</artifactId>
+			<version>1.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>xsul</groupId>
+			<artifactId>xsul</artifactId>
+			<version>2.10.5_d</version>
+		</dependency>
+		<dependency>
+			<groupId>xutil</groupId>
+			<artifactId>xutil</artifactId>
+			<version>0.1.2</version>
+			<type>jar</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>${cargo.version}</version>
+				<configuration>
+					<wait>true</wait>
+					<configuration>
+						<properties>
+							<cargo.jvmargs>
+                                <![CDATA[-Xdebug -Xrunjdwp:transport=dt_socket,address=${cargo.debug.address},server=y,suspend=${cargo.debug.suspend} -noverify ${javaagent}]]>
+							</cargo.jvmargs>
+							<cargo.tomcat.context.reloadable>true</cargo.tomcat.context.reloadable>
+						</properties>
+						<home>${project.build.directory}/tomcat6x</home>
+						<deployables>
+							<deployable>
+								<groupId>ogce.restservices</groupId>
+								<artifactId>ogce-rest</artifactId>
+								<type>war</type>
+								<properties>
+									<context>/ogce-rest</context>
+								</properties>
+							</deployable>
+						</deployables>
+					</configuration>
+					<container>
+						<containerId>tomcat6x</containerId>
+						<timeout>180000</timeout>
+						<zipUrlInstaller>
+							<url>
+								http://archive.apache.org/dist/tomcat/tomcat-6/v6.0.32/bin/apache-tomcat-6.0.32.tar.gz
+							</url>
+						</zipUrlInstaller>
+						<systemProperties>
+
+						</systemProperties>
+					</container>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>dist</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<version>${cargo.version}</version>
+						<executions>
+							<execution>
+								<id>dist-cargo-package</id>
+								<phase>install</phase>
+								<goals>
+									<goal>configure</goal>
+									<goal>package</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>2.2.1</version>
+						<configuration>
+							<!-- Do not attach the resulting artifact(s) to the project (e.g. 
+								do not deploy) -->
+							<attach>false</attach>
+							<!-- Override finalName -->
+							<finalName>rave-${project.version}</finalName>
+							<!-- Workaround for http://jira.codehaus.org/browse/MASSEMBLY-449 -->
+							<archiverConfig>
+								<fileMode>0644</fileMode>
+								<directoryMode>0755</directoryMode>
+								<defaultDirectoryMode>0755</defaultDirectoryMode>
+							</archiverConfig>
+						</configuration>
+						<executions>
+							<execution>
+								<id>dist-assembly</id>
+								<phase>install</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+								<configuration>
+									<finalName>apache-rave-${project.version}</finalName>
+									<descriptors>
+										<descriptor>${project.basedir}/src/main/assembly/distbin.xml</descriptor>
+									</descriptors>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

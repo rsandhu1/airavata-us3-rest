@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Message">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Header"/>
+        <xs:element ref="Body"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Header">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="experimentid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="hostname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="processorcount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="hostcount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="queuename" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="walltime" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="gfaclocation" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="userdn" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="brokerURL" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="serviceName" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="workflowName" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="cluster" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="us3_db" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="mgroupcount" minOccurs="0" maxOccurs="1"/>
+         <xs:element ref="global_db" minOccurs="0" maxOccurs="1"/>
+          <xs:element ref="global_host" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="experimentid" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Host name</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="hostname" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Host name</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="processorcount" type="xs:int">
+    <xs:annotation>
+      <xs:documentation>Process Count</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+   <xs:element name="hostcount" type="xs:int">
+    <xs:annotation>
+      <xs:documentation>Process Count</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="queuename" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Queue Name</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="walltime" type="xs:int">
+    <xs:annotation>
+      <xs:documentation>Walltime</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+   <xs:element name="gfaclocation" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Gfac location</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="userdn" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>User information</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+   <xs:element name="brokerURL" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Broker URL information</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+   <xs:element name="serviceName" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Service Name</xs:documentation>
+    </xs:annotation>
+  </xs:element> 
+  <xs:element name="workflowName" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Workflow Name</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cluster" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Cluster Short Name</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="us3_db" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>LIMS DB</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="mgroupcount" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>LIMS extras</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+   <xs:element name="global_db" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>LIMS extras</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+   <xs:element name="global_host" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>LIMS extras</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="Body">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Method" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="input" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Method" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Method Name</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="input">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="parameters" minOccurs="0"  maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="parameters">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="value" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+   <xs:element name="name" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Broker URL information</xs:documentation>
+    </xs:annotation>
+  </xs:element> 
+  <xs:element name="value" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Broker URL information</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="MessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+       <xs:element ref="experimentid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="status" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="message" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="outputlocation" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="stdoutlocation" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="stderrlocation" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="status" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Status</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+   <xs:element name="message" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Message</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="outputlocation" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Status</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="stdoutlocation" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Status</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="stderrlocation" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Status</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>
