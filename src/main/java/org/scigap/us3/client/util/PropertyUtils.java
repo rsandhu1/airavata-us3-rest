@@ -37,27 +37,27 @@ public class PropertyUtils implements ServletContextListener{
 		return props;
 	}
 
-//	/*
-//	* Load a properties file from the classpath
-//    * @param propsName
-//    * @return Properties
-//    * @throws Exception
-//    */
-//   public static Properties loadProperty(String propsName) throws PropertyLoadingException {
-//       try {
-//    	if (props == null) {
-//   			props = new Properties();
-//   		}
-//    	ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-//		InputStream propertyStream = classLoader.getResourceAsStream(propsName);
-//	
-////		URL url = ClassLoader.getSystemResource(propsName);
-//		   props.load(propertyStream);
-//		   return props;
-//	} catch (IOException e) {
-//		throw new PropertyLoadingException("Error loading file"+ e.getLocalizedMessage(),e);
-//	}
-//   }
+	/*
+	* Load a properties file from the classpath
+    * @param propsName
+    * @return Properties
+    * @throws Exception
+    */
+   public static Properties loadProperty(String propsName) throws Exception {
+       try {
+    	if (props == null) {
+   			props = new Properties();
+   		}
+    	ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		InputStream propertyStream = classLoader.getResourceAsStream(propsName);
+	
+//		URL url = ClassLoader.getSystemResource(propsName);
+		   props.load(propertyStream);
+		   return props;
+	} catch (IOException e) {
+		throw new Exception("Error loading file"+ e.getLocalizedMessage(),e);
+	}
+   }
 	/**
 	 * Load a Properties File
 	 * 

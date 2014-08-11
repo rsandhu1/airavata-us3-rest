@@ -21,7 +21,8 @@
 		<log4j.version>1.2.16</log4j.version>
 		<jersey.version>1.13</jersey.version>
 		<derby.version>10.9.1.0</derby.version>
-		<airavata.version>0.8-unicore-bes</airavata.version>
+		<airavata.version>0.14-SNAPSHOT</airavata.version>
+		<thrift.version>0.9.1</thrift.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 	</properties>
@@ -123,6 +124,37 @@
 			<artifactId>jersey-json</artifactId>
 			<version>${jersey.version}</version>
 		</dependency>
+		 <dependency>
+            <groupId>org.apache.thrift</groupId>
+            <artifactId>libthrift</artifactId>
+            <version>${thrift.version}</version>
+        </dependency>
+         <dependency>
+            <groupId>org.apache.airavata</groupId>
+            <artifactId>airavata-data-models</artifactId>
+            <version>${airavata.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.airavata</groupId>
+            <artifactId>airavata-model-utils</artifactId>
+            <version>${airavata.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.airavata</groupId>
+            <artifactId>airavata-common-utils</artifactId>
+            <version>${airavata.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.airavata</groupId>
+            <artifactId>airavata-client-api</artifactId>
+            <version>${airavata.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.airavata</groupId>
+            <artifactId>airavata-gfac-schema-utils</artifactId>
+            <version>${airavata.version}</version>
+        </dependency>
+        
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

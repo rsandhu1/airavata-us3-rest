@@ -20,15 +20,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-
-
-
-
-
-
-
-
-
 import org.scigap.us3.client.util.ConnectionManager;
 import org.scigap.us3.client.util.MessageUtil;
 import org.scigap.us3.client.util.ServiceConstants;
@@ -45,7 +36,7 @@ import cryptix.util.mime.Base64InputStream;
 @Path("/job/runjob")
 public class AiravataJobRun extends AbstractService{
 	
-	public AiravataJobRun() {
+	public AiravataJobRun() throws Exception{
 		super();
 	}
 

@@ -1,6 +1,8 @@
 package org.scigap.us3.client.rest;
 
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -8,6 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import org.apache.airavata.model.workspace.experiment.JobStatus;
 import org.scigap.us3.client.util.ClientConstants;
 import org.scigap.us3.client.util.PropertyUtils;
 import org.scigap.us3.message.MessageResponse;
@@ -18,7 +21,7 @@ public class AiravataJobStatus extends AbstractService {
 
 	private static Properties properties;
 	
-	public AiravataJobStatus() {
+	public AiravataJobStatus() throws Exception{
 		super();
 	}
 
@@ -41,35 +44,17 @@ public class AiravataJobStatus extends AbstractService {
 	private MessageResponse getJobStatus(String experimentID) throws Exception {
 		MessageResponse response = new MessageResponse();
 		try {
-//			ExperimentData data =  airavataAPI.getProvenanceManager().getExperimentData(experimentID);
-
             StringBuffer buffer = new StringBuffer();
-//			if(data.getNodeDataList().size() > 0){
-//				response.setStatus(data.getNodeData(serviceName).getState().toString());
-//			}else{
-//				response.setStatus(data.getState().toString());
-//            }
-//            String status = response.getStatus();
-//            response.setStatus(status);
-//            List<ApplicationJob> applicationJobs = airavataAPI.getProvenanceManager().getApplicationJobs(experimentID, null, null);
-//            if (applicationJobs.size() != 0) {
-//                ApplicationJob job = applicationJobs.get(0);
-//                buffer.append(job.getJobData());
-//            }
-//
-//			if (status.equals("FAILED")) {
-//				List<ExecutionError> experimentExecutionErrors = airavataAPI.getExecutionManager().getExecutionErrors(experimentID, experimentID, serviceName, null, null);
-//				for (ExecutionError experimentExecutionError : experimentExecutionErrors) {
-//					buffer.append(experimentExecutionError.getErrorMessage());
-//				}
-//			}
-            //as per the requested by Gary removing these content from message Element
-//            else if(status.equals("FINISHED")){
-//				List<OutputData> outputData = data.getNodeData(serviceName).getOutputData();
-//				for (OutputData outputData2 : outputData) {
-//					buffer.append(outputData2.getValue());
-//				}
-//			}
+            Map<String, JobStatus> jobStatuses = airavata.getJobStatuses(experimentID);
+            Set<String> strings = jobStatuses.keySet();
+            for (String key : strings) {
+                JobStatus jobStatus = jobStatuses.get(key);
+                if(jobStatus == null){
+                	buffer.append(airavata.getExperimentStatus(experimentID));
+                }else{
+                buffer.append(jobStatus.getJobState().toString());	
+                }
+                }
             response.setMessage(buffer.toString());
         }catch(Exception e){
 			response.setStatus("FAILED");
@@ -79,7 +64,7 @@ public class AiravataJobStatus extends AbstractService {
 	}
 	public static Properties getProperties() throws Exception {
 		if(null == properties){
-			properties = PropertyUtils.load(ClientConstants.PROPERTYFILE_NAME);
+			properties = PropertyUtils.loadProperty(ClientConstants.PROPERTYFILE_NAME);
 		}
 		return properties;
 	}
