@@ -253,8 +253,8 @@
 						<home>${project.build.directory}/tomcat6x</home>
 						<deployables>
 							<deployable>
-								<groupId>ogce.restservices</groupId>
-								<artifactId>ogce-rest</artifactId>
+								<groupId>scigap.restservices</groupId>
+								<artifactId>us3-scigap-rest</artifactId>
 								<type>war</type>
 								<properties>
 									<context>/ogce-rest</context>

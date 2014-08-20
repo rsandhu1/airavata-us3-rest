@@ -1,5 +1,5 @@
 # Start service to test standalone 
-mvn jetty:run
+mvn cargo:start
 
 # Generate beans from schema
 1. CD to project directory 

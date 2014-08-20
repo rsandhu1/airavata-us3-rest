@@ -1,0 +1,13 @@
+2014-08-12 13:35:17,253 [http-8080-1] INFO  org.scigap.us3.client.rest.AiravataJobStatus  - Getting Status for ExperimentID : US3-a6ee2840-288b-8844-7101-557885e67dd8
+2014-08-12 13:36:29,437 [http-8080-2] INFO  org.scigap.us3.client.rest.AiravataJobStatus  - Getting Status for ExperimentID : US3ExperimentTrestles_b2e88b71-e7c3-4918-9345-45edd7d5a080
+2014-08-12 13:39:19,832 [http-8080-1] INFO  org.scigap.us3.client.rest.AiravataJobStatus  - Getting Status for ExperimentID : US3ExperimentTrestles_b2e88b71-e7c3-4918-9345-45edd7d5a080
+2014-08-12 13:39:50,045 [http-8080-1] INFO  org.scigap.us3.client.rest.AiravataJobStatus  - Getting Status for ExperimentID : US3ExperimentTrestles_b2e88b71-e7c3-4918-9345-45edd7d5a080
+2014-08-12 14:44:28,949 [http-8080-2] INFO  org.scigap.us3.client.rest.AiravataJobStatus  - Getting Status for ExperimentID : US3ExperimentTrestles_b2e88b71-e7c3-4918-9345-45edd7d5a080
+2014-08-12 15:46:23,092 [http-8080-1] INFO  org.scigap.us3.client.rest.AiravataJobStatus  - Getting Status for ExperimentID : US3ExperimentTrestles_b2e88b71-e7c3-4918-9345-45edd7d5a080
+2014-08-12 17:08:32,679 [http-8080-2] INFO  org.scigap.us3.client.rest.AiravataJobStatus  - Getting Status for ExperimentID : US3ExperimentTrestles_b2e88b71-e7c3-4918-9345-45edd7d5a080
+2014-08-19 15:39:29,045 [http-8080-1] INFO  org.scigap.us3.client.rest.AiravataJobStatus  - Getting Status for ExperimentID : US3ExperimentTrestles_b2e88b71-e7c3-4918-9345-45edd7d5a080
+2014-08-19 15:39:35,352 [http-8080-2] INFO  org.scigap.us3.client.rest.AiravataJobStatus  - Getting Status for ExperimentID : US3ExperimentLonestar_4bebfcf7-c5c3-406e-a6f9-5653705a2ebd
+2014-08-19 15:47:00,928 [http-8080-1] INFO  org.scigap.us3.client.rest.AiravataJobStatus  - Getting Status for ExperimentID : US3ExperimentTrestles_e425f83e-3237-4d97-aaff-f5cdf3410252
+2014-08-19 15:48:33,784 [http-8080-2] INFO  org.scigap.us3.client.rest.AiravataJobStatus  - Getting Status for ExperimentID : US3ExperimentStampede_35de66ed-73b7-42a2-8d7f-1c115b8a57e2
+2014-08-19 15:48:46,449 [http-8080-1] INFO  org.scigap.us3.client.rest.AiravataJobStatus  - Getting Status for ExperimentID : US3ExperimentStampede_35de66ed-73b7-42a2-8d7f-1c115b8a57e2
+2014-08-19 15:58:34,059 [http-8080-2] INFO  org.scigap.us3.client.rest.AiravataJobStatus  - Getting Status for ExperimentID : US3ExperimentStampede_b1d5681f-b291-4c37-9642-4b0e8ca5195b
