@@ -12,10 +12,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import org.apache.airavata.model.workspace.experiment.DataTransferDetails;
 import org.apache.airavata.model.workspace.experiment.ErrorDetails;
 import org.apache.airavata.model.workspace.experiment.Experiment;
 import org.apache.airavata.model.workspace.experiment.ExperimentState;
 import org.apache.airavata.model.workspace.experiment.ExperimentStatus;
+import org.apache.airavata.model.workspace.experiment.JobDetails;
 import org.apache.airavata.model.workspace.experiment.JobState;
 import org.apache.airavata.model.workspace.experiment.JobStatus;
 import org.scigap.us3.client.util.ClientConstants;
@@ -53,19 +55,40 @@ public class AiravataJobStatus extends AbstractService {
 		try {
             Map<String, JobStatus> jobStatuses = airavata.getJobStatuses(experimentID);
             Set<String> strings = jobStatuses.keySet();
+            Experiment experiment = airavata.getExperiment(experimentID);
+           	ExperimentStatus experimentStatus = experiment.getExperimentStatus();
+           	log.info("experimentStatus" + experimentStatus);
             for (String key : strings) {
                 JobStatus jobStatus = jobStatuses.get(key);
-                if(jobStatus == null || JobState.COMPLETE.equals(jobStatus.getJobState())|| JobState.FAILED.equals(jobStatus.getJobState())){
-                	Experiment experiment = airavata.getExperiment(experimentID);
-                	ExperimentStatus experimentStatus = experiment.getExperimentStatus();
+                if(jobStatus == null || ExperimentState.CANCELED.equals(experimentStatus.getExperimentState()) || JobState.COMPLETE.equals(jobStatus.getJobState())|| JobState.FAILED.equals(jobStatus.getJobState())){
                 	response.setStatus(experimentStatus.getExperimentState().toString());
-                	if(ExperimentState.FAILED.equals(experimentStatus)){
-                		List<ErrorDetails> errors = experiment.getErrors();
+            		response.setMessage("Status last update: "+ new Date(experimentStatus.getTimeOfStateChange()).toLocaleString());
+            		List<JobDetails> jobDetails = airavata.getJobDetails(experimentID);
+            		StringBuffer job = new StringBuffer();
+            		log.info(jobDetails.size());
+            		for (JobDetails jobDetail : jobDetails) {
+            			job.append(jobDetail.getJobDescription());
+					}
+            		response.setJobdetails(job.toString());
+            		StringBuffer dataTransfer = new StringBuffer();
                 		
-                		response.setMessage();
-                	}else{
-                	response.setMessage("Status last update: "+ new Date(experimentStatus.getTimeOfStateChange()).toLocaleString());
+            		List<DataTransferDetails> dataTransferDetails = airavata.getDataTransferDetails(experimentID);
+            		for (DataTransferDetails dataTransferDetail : dataTransferDetails) {
+            			dataTransfer.append(dataTransferDetail.getTransferDescription() + "\n");
+					}
+            		log.info(dataTransferDetails.size());
+            		response.setDatadetails(dataTransfer.toString());
+            		StringBuffer experimentMessage = new StringBuffer();
+            		
+                    if(ExperimentState.FAILED.equals(experimentStatus.getExperimentState())){
+                		List<ErrorDetails> errors = experiment.getErrors();
+                		for (ErrorDetails errorDetails : errors) {
+                			log.info(errorDetails.toString());
+                			experimentMessage.append(errorDetails.getActualErrorMessage());
+                			break;
+                       }
                 	}
+            		response.setMessage(experimentMessage.toString());
                 }
                 else{
                  	response.setStatus(jobStatus.getJobState().toString());

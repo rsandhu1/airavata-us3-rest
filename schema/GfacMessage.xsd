@@ -154,6 +154,8 @@
        <xs:element ref="experimentid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="status" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="message" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="jobdetails" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="datadetails" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="outputlocation" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element ref="stdoutlocation" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="stderrlocation" minOccurs="0" maxOccurs="1"/>
@@ -170,19 +172,29 @@
       <xs:documentation>Message</xs:documentation>
     </xs:annotation>
   </xs:element>
+  <xs:element name="datadetails" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>datadetails</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="jobdetails" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>jobdetails</xs:documentation>
+    </xs:annotation>
+  </xs:element>
   <xs:element name="outputlocation" type="xs:string">
     <xs:annotation>
-      <xs:documentation>Status</xs:documentation>
+      <xs:documentation>outputlocation</xs:documentation>
     </xs:annotation>
   </xs:element>
   <xs:element name="stdoutlocation" type="xs:string">
     <xs:annotation>
-      <xs:documentation>Status</xs:documentation>
+      <xs:documentation>stdoutlocation</xs:documentation>
     </xs:annotation>
   </xs:element>
   <xs:element name="stderrlocation" type="xs:string">
     <xs:annotation>
-      <xs:documentation>Status</xs:documentation>
+      <xs:documentation>stderrlocation</xs:documentation>
     </xs:annotation>
   </xs:element>
 </xs:schema>
